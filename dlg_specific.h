@@ -44,12 +44,15 @@ extern "C" {
 
 #define INI_KDESC			"Description"	/* Data source
 							 * description */
+#define INI_SERVICE			"Service"	/* Name of the
+							 * Postgres service */
 #define INI_SERVER			"Servername"	/* Name of Server
 							 * running the Postgres
 							 * service */
+#define SPEC_SERVICE			"service"
 #define SPEC_SERVER			"server"
-#define INI_PORT			"Port"	/* Port on which the
-						 * Postmaster is listening */
+#define INI_PORT			"Port"		/* Port on which the
+							 * Postmaster is listening */
 #define INI_DATABASE			"Database"	/* Database Name */
 #define ABBR_DATABASE			"DX"	/* Database Name */
 #define INI_UID				"UID"		/* Default User Name */

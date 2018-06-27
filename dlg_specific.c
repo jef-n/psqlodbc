@@ -298,9 +298,10 @@ MYLOG(DETAIL_LOG_LEVEL, "force_abbrev=%d abbrev=%d\n", ci->force_abbrev_connstr,
 	encode(ci->password, encoded_item, sizeof(encoded_item));
 	/* fundamental info */
 	nlen = MAX_CONNECT_STRING;
-	olen = snprintf(connect_string, nlen, "%s=%s;DATABASE=%s;SERVER=%s;PORT=%s;UID=%s;PWD=%s",
+	olen = snprintf(connect_string, nlen, "%s=%s;SERVICE=%s;DATABASE=%s;SERVER=%s;PORT=%s;UID=%s;PWD=%s",
 			got_dsn ? "DSN" : "DRIVER",
 			got_dsn ? ci->dsn : ci->drivername,
+			ci->service,
 			ci->database,
 			ci->server,
 			ci->port,
@@ -600,6 +601,8 @@ copyConnAttributes(ConnInfo *ci, const char *attribute, const char *value)
 		STRCPY_FIXED(ci->desc, value);
 	else if (stricmp(attribute, INI_DATABASE) == 0 || stricmp(attribute, ABBR_DATABASE) == 0)
 		STRCPY_FIXED(ci->database, value);
+	else if (stricmp(attribute, INI_SERVICE) == 0 || stricmp(attribute, SPEC_SERVICE) == 0)
+		STRCPY_FIXED(ci->service, value);
 	else if (stricmp(attribute, INI_SERVER) == 0 || stricmp(attribute, SPEC_SERVER) == 0)
 		STRCPY_FIXED(ci->server, value);
 	else if (stricmp(attribute, INI_USERNAME) == 0 || stricmp(attribute, INI_UID) == 0)
@@ -932,6 +935,9 @@ MYLOG(0, "drivername=%s\n", drivername);
 
 	SQLGetPrivateProfileString(DSN, INI_KDESC, NULL_STRING, ci->desc, sizeof(ci->desc), ODBC_INI);
 
+	if (SQLGetPrivateProfileString(DSN, INI_SERVICE, NULL_STRING, temp, sizeof(temp), ODBC_INI) > 0)
+		STRCPY_FIXED(ci->service, temp);
+
 	if (SQLGetPrivateProfileString(DSN, INI_SERVER, NULL_STRING, temp, sizeof(temp), ODBC_INI) > 0)
 		STRCPY_FIXED(ci->server, temp);
 
@@ -1214,6 +1220,11 @@ writeDSNinfo(const ConnInfo *ci)
 	SQLWritePrivateProfileString(DSN,
 								 INI_DATABASE,
 								 ci->database,
+								 ODBC_INI);
+
+	SQLWritePrivateProfileString(DSN,
+								 INI_SERVICE,
+								 ci->service,
 								 ODBC_INI);
 
 	SQLWritePrivateProfileString(DSN,
