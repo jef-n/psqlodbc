@@ -64,6 +64,7 @@ SetDlgStuff(HWND hdlg, const ConnInfo *ci)
 	 * description
 	 */
 	SetDlgItemText(hdlg, IDC_DSNAME, ci->dsn);
+	SetDlgItemText(hdlg, IDC_SERVICE, ci->service);
 	SetDlgItemText(hdlg, IDC_DESC, ci->desc);
 
 	SetDlgItemText(hdlg, IDC_DATABASE, ci->database);
@@ -115,7 +116,7 @@ GetDlgStuff(HWND hdlg, ConnInfo *ci)
 	char	medium_buf[MEDIUM_REGISTRY_LEN];
 
 	GetDlgItemText(hdlg, IDC_DESC, ci->desc, sizeof(ci->desc));
-
+	GetDlgItemText(hdlg, IDC_SERVICE, ci->service, sizeof(ci->service));
 	GetDlgItemText(hdlg, IDC_DATABASE, ci->database, sizeof(ci->database));
 	GetDlgItemText(hdlg, IDC_SERVER, ci->server, sizeof(ci->server));
 	GetDlgItemText(hdlg, IDC_USER, ci->username, sizeof(ci->username));

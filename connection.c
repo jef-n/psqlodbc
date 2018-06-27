@@ -2718,6 +2718,10 @@ LIBPQ_connect(ConnectionClass *self)
 	}
 	/* Build arrays of keywords & values, for PQconnectDBParams */
 	cnt = 0;
+	if (ci->service[0])
+	{
+		opts[cnt] = "service";		vals[cnt++] = ci->service;
+	}
 	if (ci->server[0])
 	{
 		opts[cnt] = "host";		vals[cnt++] = ci->server;
@@ -2728,7 +2732,7 @@ LIBPQ_connect(ConnectionClass *self)
 	}
 	if (ci->database[0])
 	{
-		opts[cnt] = "dbname";	vals[cnt++] = ci->database;
+		opts[cnt] = "dbname";		vals[cnt++] = ci->database;
 	}
 	if (ci->username[0])
 	{

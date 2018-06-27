@@ -378,6 +378,8 @@ dconn_FDriverConnectProc(
 			ShowWindow(GetDlgItem(hdlg, IDC_TEST), SW_HIDE);
 			ShowWindow(GetDlgItem(hdlg, IDC_MANAGEDSN), SW_HIDE);
 			// ShowWindow(GetDlgItem(hdlg, IDC_DATASOURCE), SW_HIDE);
+			if ('\0' != ci->service[0])
+				EnableWindow(GetDlgItem(hdlg, IDC_SERVICE), FALSE);
 			if ('\0' != ci->server[0])
 				EnableWindow(GetDlgItem(hdlg, IDC_SERVER), FALSE);
 			if ('\0' != ci->port[0])
@@ -397,6 +399,8 @@ dconn_FDriverConnectProc(
 			}
 			else if (ci->database[0] == '\0')
 				;			/* default focus */
+			else if (ci->service[0] == '\0')
+				SetFocus(GetDlgItem(hdlg, IDC_SERVICE));
 			else if (ci->server[0] == '\0')
 				SetFocus(GetDlgItem(hdlg, IDC_SERVER));
 			else if (ci->port[0] == '\0')

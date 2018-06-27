@@ -22,6 +22,7 @@
 #define IDC_DSNAME			400
 #define IDC_DSNAMETEXT			401
 #define IDC_DESC			404
+#define IDC_SERVICE			405
 #define IDC_SERVER			407
 #define IDC_DATABASE			408
 #define IDC_SSLMODE			409
