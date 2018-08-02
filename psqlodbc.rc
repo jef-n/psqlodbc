@@ -494,7 +494,7 @@ CAPTION "PostgreSQL ANSI ODBC Treiber (psqlODBC) Einstellungen"
 #endif
 FONT 8, "MS Sans Serif"
 BEGIN
-    RTEXT           "&Dataquelle",IDC_DSNAMETEXT,3,25,50,12,NOT WS_GROUP
+    RTEXT           "&Datenquelle",IDC_DSNAMETEXT,3,25,50,12,NOT WS_GROUP
     EDITTEXT        IDC_DSNAME,57,24,72,12,ES_AUTOHSCROLL | WS_GROUP
     RTEXT           "Bes&chreibung",IDC_DESCTEXT,143,24,45,12,NOT WS_GROUP
     EDITTEXT        IDC_DESC,192,22,104,12,ES_AUTOHSCROLL
