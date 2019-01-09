@@ -67,7 +67,7 @@ Patch by Daniel Cory.
 <li>Remove connSettings option and/or pqopt option from the OutConnectionString parameter of SQLDriverConnect() when each option doesn't exist in InConnectionString parameter.</li>
 <li>The parameters should be cast because parameters of concat() function are variadic "any".</li>
 <li>Unbuffered-IO in Windows is incredibly slow. Instead call fflush() after fprintf().</li>
-<li>Add an alias DX of *Database* keyword for connection strings to aviod the use of "database" keyword which has a special meaning in some apps or middlewares.</li>
+<li>Add an alias DX of *Database* keyword for connection strings to avoid the use of "database" keyword which has a special meaning in some apps or middlewares.</li>
 <li>numeric items without precision are unlimited and there's no natural map between SQL Data types.</li>
 Add an option *Numeric(without precision) as*.
 <li>Fix a bug that SQLSpecialColumns() returns oid/xmin incorrectly when a table does not exist.</li>
